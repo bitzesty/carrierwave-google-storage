@@ -53,7 +53,7 @@ module CarrierWave
         tmp_file = Tempfile.new(
           CarrierWave::Support::UriFilename.filename(file.name)
         )
-        (file.download tmp_file.path, verify: :all).read
+        (file.download(tmp_file.path, verify: :all)).read
       end
 
       def store(new_file)
@@ -82,7 +82,7 @@ module CarrierWave
       end
 
       def authenticated_url(options = {})
-        bucket.signed_url(path, options)
+        bucket.signed_url(path, **gcloud_options.expiration_options(options))
       end
 
       def public_url
