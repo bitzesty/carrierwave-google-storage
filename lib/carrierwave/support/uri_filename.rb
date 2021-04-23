@@ -1,10 +1,10 @@
+require 'addressable/uri'
+
 module CarrierWave
   module Support
     module UriFilename
       def self.filename(url)
-        path = url.split('?').first
-
-        URI.decode(path).gsub(/.*\/(.*?$)/, '\1')
+        Addressable::URI.parse(url).path.gsub(/.*\/(.*?$)/, '\1')
       end
     end
   end
