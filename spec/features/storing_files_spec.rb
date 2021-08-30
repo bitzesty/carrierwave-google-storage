@@ -30,22 +30,8 @@ describe 'Storing Files', type: :feature do
       expect(uploader.file.attributes).to be_nil
     end
 
-    it 'retrieves content-type for a stored file' do
-      expect(uploader.file.attributes).to include(
-        :content_type,
-        :etag,
-        :updated_at
-      )
-
-      expect(uploader.file.content_type).to eq('image/png')
-
-      image.close
-      uploader.file.delete
-    end
-
     it 'retrieves the filename for a stored file' do
       expect(uploader.file.attributes).to include(
-        :content_type,
         :etag,
         :updated_at
       )
@@ -153,12 +139,10 @@ describe 'Storing Files', type: :feature do
 
     it 'retrieves the attributes for a stored file' do
       expect(uploader.file.attributes).to include(
-      :content_type,
       :etag,
       :updated_at
       )
 
-      expect(uploader.file.content_type).to eq('image/png')
       expect(uploader.file.filename).to eq('image3.png')
       expect(uploader.file.content_disposition).to eq('attachment')
 

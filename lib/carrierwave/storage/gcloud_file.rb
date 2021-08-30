@@ -24,7 +24,6 @@ module CarrierWave
       def attributes
         return unless exists?
         {
-          content_type: file.content_type,
           size: file.size,
           updated_at: file.updated_at.to_s,
           etag: file.etag
@@ -65,7 +64,6 @@ module CarrierWave
             new_file.path,
             path,
             acl: uploader.gcloud_bucket_is_public ? 'publicRead' : nil,
-            content_type: new_file.content_type,
             content_disposition: uploader.gcloud_content_disposition
           )
         end

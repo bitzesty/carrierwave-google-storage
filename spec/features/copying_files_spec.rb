@@ -30,14 +30,6 @@ describe 'Copying Files', type: :feature do
     expect(copy_attributes).to eq(original_attributes)
   end
 
-  it 'preserves content type on copy' do
-    original.file.copy_to('uploaded_files/image3.png')
-
-    copy.retrieve_from_store!('image3.png')
-
-    expect(copy.file.content_type).to eq 'image/png'
-  end
-
   context 'with acl set to public' do
     let(:original) { FeatureUploader.new.tap { |uploader| uploader.gcloud_bucket_is_public = true } }
 

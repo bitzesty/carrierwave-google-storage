@@ -29,22 +29,8 @@ describe 'Caching Files', type: :feature do
       expect(uploader.file.attributes).to be_nil
     end
 
-    it 'retrieves content-type for a cached file' do
-      expect(uploader.file.attributes).to include(
-        :content_type,
-        :etag,
-        :updated_at
-      )
-
-      expect(uploader.file.content_type).to eq('image/png')
-
-      image.close
-      uploader.file.delete
-    end
-
     it 'retrieves the filename for a cached file' do
       expect(uploader.file.attributes).to include(
-        :content_type,
         :etag,
         :updated_at
       )
