@@ -14,6 +14,7 @@ module CarrierWave
         @uploader   = uploader
         @connection = connection
         @path       = path
+        @gcloud_options = GcloudOptions.new(uploader)
       end
 
       def file
